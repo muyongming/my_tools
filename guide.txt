@@ -1,0 +1,72 @@
+c语言运行程序时隐藏控制台窗口
+gcc 编译的时候加上一个参数 -mwindows
+
+例如：
+
+gcc dot2.c -mwindows
+
+
+
+
+c语言 命令行图形库 ansi-escape-lib
+ansi-escape-lib 是一个简单的 ansi escape 库，它可以用于在终端上打印 ansi escape 码，
+
+参考：https://en.wikipedia.org/wiki/ANSI_escape_code
+
+ansi escape 封装，方便控制命令行颜色和光标
+
+视频教程
+https://www.bilibili.com/video/BV185411R7Ci
+
+【把 ansi.h 和 ansi.c 复制到自己项目，并引入 ansi.h】
+兼容 gcc 和 vs
+例子
+基本用法
+gcc -o demo.exe examples/demo.c ansi.c
+图片转字符画
+imgs.c 显示图片，imgs.h 图片头文件，保存了图片的 rgb 数组，可以直接使用
+
+图片转 c 语言 rgb 数组
+imgs.h 是使用这个项目 https://github.com/noxue/img2rgb 来生成的 c 语言数组
+
+编译命令
+gcc -o imgs.exe examples/imgs.c ansi.c
+
+运行命令
+执行命令如果不带参数，会提示你可以输入哪些参数
+./imgs.exe
+比如显示 qq 图片
+./imgs.exe qq
+
+
+功能
+播放音乐，显示波形图
+
+包含知识
+c语言基础
+sdl2库的基本使用
+miniaudio库
+一点点多线程知识
+cmake工具用法
+实现
+miniaudio 播放音乐
+sdl2 显示波形图
+编译
+源码地址 https://github.com/noxue/music-wave
+
+编译好的程序，点击下载：music-wave.zip
+
+编译命令
+
+mkdir build
+cd build
+cmake .. -G "MinGW Makefiles"
+mingw32-make
+下载sdl（mingw编译不需要下载，已经包含在项目中了）
+
+下载页面：https://www.libsdl.org/download-2.0.php
+mingw: https://www.libsdl.org/release/SDL2-devel-2.0.22-mingw.zip
+修改cmake/FindSDL2.cmake 中 sdl2 所在路径(注意路径分隔符使用** / **)（mingw编译不需要修改，库已经包含在项目中了）
+
+运行程序
+将 音乐文件 拖到 程序图标上即可播放
